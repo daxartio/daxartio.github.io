@@ -1,13 +1,15 @@
 <template>
   <div class="container">
     <div>
-      <logo />
       <h1 class="title">
         Данил Ахтаров
       </h1>
       <h2 class="subtitle">
-        Программист
+        Программист (страница в разработке)
       </h2>
+      <div>
+        Привет! На данной странице я хочу кратко рассказать о своём опыте.
+      </div>
       <div class="links">
         <a
           href="https://github.com/daxartio"
@@ -26,7 +28,7 @@ import Logo from '~/components/Logo.vue'
 
 export default {
   components: {
-    Logo
+    Logo,
   }
 }
 </script>
