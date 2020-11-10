@@ -1,7 +1,8 @@
 .DEFAULT_GOAL := help
 
-.PHONY: docs help clean
+.PHONY: all docs help clean
 
+all: docs clean
 
 help:
 	@echo 'Usage: make [target] ...'
@@ -13,5 +14,4 @@ docs:
 	mkdocs build -s -v
 
 clean:
-	rm -rf docs/cli.md || true
 	rm -rf site || true
