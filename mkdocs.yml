@@ -4,6 +4,7 @@ site_description: 'CV'
 
 repo_name: 'daxartio.github.io'
 repo_url: 'https://github.com/daxartio/daxartio.github.io'
+edit_uri: edit/main/docs/
 
 copyright: 'Copyright &copy; 2020 Danil Akhtarov'
 
