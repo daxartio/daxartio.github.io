@@ -1,0 +1,38 @@
+site_name: Danil Akhtarov
+site_url: https://daxartio.github.io/
+site_description: 'CV'
+
+repo_name: 'daxartio.github.io'
+repo_url: 'https://github.com/daxartio/daxartio.github.io'
+
+copyright: 'Copyright &copy; 2020 Danil Akhtarov'
+
+nav:
+  - 'Главная': README.md
+
+theme:
+  name: material
+  language: ru
+  palette:
+    primary: black
+    accent: yellow
+
+plugins:
+- search:
+    lang: ru
+- mkdocstrings:
+    default_handler: python
+    handlers:
+      python:
+        rendering:
+          show_source: true
+    watch:
+      - tinvest
+
+extra_css:
+  - custom.css
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - pymdownx.superfences
