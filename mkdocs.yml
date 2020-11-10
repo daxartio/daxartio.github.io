@@ -31,7 +31,10 @@ plugins:
       - tinvest
 
 extra_css:
-  - custom.css
+  - 'css/termynal.css'
+
+extra_javascript:
+  - 'js/termynal.js'
 
 markdown_extensions:
   - admonition
