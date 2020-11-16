@@ -19,6 +19,7 @@ theme:
     accent: yellow
 
 plugins:
+- termynal
 - search:
     lang: ru
 - mkdocstrings:
@@ -29,12 +30,6 @@ plugins:
           show_source: true
     watch:
       - tinvest
-
-extra_css:
-  - 'css/termynal.css'
-
-extra_javascript:
-  - 'js/termynal.js'
 
 markdown_extensions:
   - admonition

@@ -13,5 +13,8 @@ help:
 docs:
 	mkdocs build -s -v
 
+docs-serve:
+	mkdocs serve
+
 clean:
 	rm -rf site || true
