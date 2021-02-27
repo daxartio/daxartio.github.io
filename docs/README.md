@@ -15,7 +15,7 @@ Hello World
 ## Ссылки
 
 - [Gihub Profile @daxartio](https://github.com/daxartio)
-- [Twitter @idaxtar](https://twitter.com/idaxtar)
+- [Twitter @daxartio](https://twitter.com/daxartio)
 
 ## Какие ЯП использую
 
