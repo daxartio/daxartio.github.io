@@ -1,6 +1,6 @@
 # Главная
 
-Python Developer
+Software Engineer
 
 <!-- termynal -->
 ```
@@ -21,7 +21,7 @@ Hello World
 
 - Python
 
-Есть опыт использования TypeScript, Go, Kotlin, Dart, Lua, C. Всё таки склонен решать задачи на том языке, на котором постоянно пишу, а это Python.
+Есть опыт использования Rust, TypeScript, Go, Kotlin, Dart, Lua, C.
 В основном, задачи связанные с backend web приложениями.
 
 ### Моя концепция написания кода
@@ -51,6 +51,7 @@ Hello World
 ## Открытые проекты
 
 - [Tinvest](https://github.com/daxartio/tinvest) [![Gihub Stars](https://img.shields.io/github/stars/daxartio/tinvest?style=social)](https://github.com/daxartio/tinvest), клиент для работы с Тинькофф Инвестициями.
+- [Tinkoff Invest](https://github.com/Tinkoff/invest-python) [![Gihub Stars](https://img.shields.io/github/stars/tinkoff/invest-python?style=social)](https://github.com/Tinkoff/invest-python), клиент для работы с Тинькофф Инвестициями.
 - [Sportorg](https://github.com/sportorg/pysport) [![Gihub Stars](https://img.shields.io/github/stars/sportorg/pysport?style=social)](https://github.com/sportorg/pysport), программа для службы хронометража в циклических видах спорта.
 - [Termynal](https://github.com/daxartio/termynal) [![Gihub Stars](https://img.shields.io/github/stars/daxartio/termynal?style=social)](https://github.com/daxartio/termynal), просто проект обертка для маркдауна.
 
