@@ -1,6 +1,7 @@
 .DEFAULT_GOAL := help
+POETRY_RUN = poetry run
 
-.PHONY: all docs help clean
+.PHONY: all docs docs-serve help clean
 
 all: docs clean
 
@@ -11,10 +12,10 @@ help:
 	@echo ''
 
 docs:
-	mkdocs build -s -v
+	$(POETRY_RUN) mkdocs build -s -v
 
 docs-serve:
-	mkdocs serve
+	$(POETRY_RUN) mkdocs serve
 
 clean:
 	rm -rf site || true
