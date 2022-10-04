@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>$title$</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500|Jost:400,500,600&display=swap");
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      color: #2b2c48;
+      font-family: "Jost", sans-serif;
+      background-image: linear-gradient(to right bottom, #bd31a7, #8c3c98, #623c81, #413663, #2b2c42);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+
+    .card {
+      max-width: 340px;
+      margin: auto;
+      overflow-y: auto;
+      position: relative;
+      z-index: 1;
+      overflow-x: hidden;
+      background-color: white;
+      display: flex;
+      transition: 0.3s;
+      flex-direction: column;
+      border-radius: 10px;
+      box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.2);
+    }
+
+    .card[data-state="#about"] {
+      height: 450px;
+    }
+
+    .card[data-state="#about"] .card-main {
+      padding-top: 0;
+    }
+
+    .card[data-state="#experience"] {
+      height: 550px;
+    }
+
+    .card.is-active .card-header {
+      height: 80px;
+    }
+
+    .card.is-active .card-cover {
+      height: 100px;
+      top: -50px;
+    }
+
+    .card.is-active .card-avatar {
+      transform: none;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      bottom: 10px;
+    }
+
+    .card.is-active .card-fullname,
+    .card.is-active .card-jobtitle {
+      left: 86px;
+      transform: none;
+    }
+
+    .card.is-active .card-fullname {
+      bottom: 18px;
+      font-size: 19px;
+    }
+
+    .card.is-active .card-jobtitle {
+      bottom: 16px;
+      letter-spacing: 1px;
+      font-size: 10px;
+    }
+
+    .card-header {
+      position: relative;
+      display: flex;
+      height: 200px;
+      flex-shrink: 0;
+      width: 100%;
+      transition: 0.3s;
+    }
+
+    .card-header * {
+      transition: 0.3s;
+    }
+
+    .card-cover {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      height: 160px;
+      top: -20%;
+      left: 0;
+      will-change: top;
+      background-size: cover;
+      background-position: center;
+      filter: blur(30px);
+      transform: scale(1.2);
+      transition: 0.5s;
+    }
+
+    .card-avatar {
+      width: 100px;
+      height: 100px;
+      box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 50%;
+      -o-object-position: center;
+      object-position: center;
+      -o-object-fit: cover;
+      object-fit: cover;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(-64px);
+    }
+
+    .card-fullname {
+      position: absolute;
+      bottom: 0;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      white-space: nowrap;
+      transform: translateY(-10px) translateX(-50%);
+      left: 50%;
+    }
+
+    .card-jobtitle {
+      position: absolute;
+      bottom: 0;
+      font-size: 11px;
+      white-space: nowrap;
+      font-weight: 500;
+      opacity: 0.7;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(-7px);
+    }
+
+    .card-main {
+      position: relative;
+      flex: 1;
+      display: flex;
+      padding-top: 10px;
+      flex-direction: column;
+    }
+
+    .card-subtitle {
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-desc {
+      line-height: 1.6;
+      color: #636b6f;
+      font-size: 14px;
+      margin: 0;
+      font-weight: 400;
+      font-family: "DM Sans", sans-serif;
+    }
+
+    .card-social {
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      margin-bottom: 30px;
+    }
+
+    .card-social svg {
+      fill: #a5b5ce;
+      width: 16px;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .card-social a {
+      color: #8797a1;
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+      background-color: rgba(93, 133, 193, 0.05);
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .card-social a:hover svg {
+      fill: #637faa;
+    }
+
+    .card-social a:last-child {
+      margin-right: 0;
+    }
+
+    .card-buttons {
+      display: flex;
+      background-color: #fff;
+      margin-top: auto;
+      position: sticky;
+      bottom: 0;
+      left: 0;
+    }
+
+    .card-buttons button {
+      flex: 1 1 auto;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      background: 0;
+      font-size: 13px;
+      border: 0;
+      padding: 15px 5px;
+      cursor: pointer;
+      color: #5c5c6d;
+      transition: 0.3s;
+      font-family: "Jost", sans-serif;
+      font-weight: 500;
+      outline: 0;
+      border-bottom: 3px solid transparent;
+    }
+
+    .card-buttons button.is-active,
+    .card-buttons button:hover {
+      color: #2b2c48;
+      border-bottom: 3px solid #8a84ff;
+      background: linear-gradient(to bottom, rgba(127, 199, 231, 0) 0%, rgba(207, 204, 255, 0.2) 44%, rgba(211, 226, 255, 0.4) 100%);
+    }
+
+    .card-section {
+      display: none;
+    }
+
+    .card-section.is-active {
+      display: block;
+      -webkit-animation: fadeIn 0.6s both;
+      animation: fadeIn 0.6s both;
+    }
+
+    @-webkit-keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translatey(40px);
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translatey(40px);
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .card-timeline {
+      margin-top: 30px;
+      position: relative;
+    }
+
+    .card-timeline:after {
+      background: linear-gradient(to top, rgba(134, 214, 243, 0) 0%, #516acc 100%);
+      content: "";
+      left: 42px;
+      width: 2px;
+      top: 0;
+      height: 100%;
+      position: absolute;
+      content: "";
+    }
+
+    .card-item {
+      position: relative;
+      padding-left: 60px;
+      padding-right: 20px;
+      padding-bottom: 30px;
+      z-index: 1;
+    }
+
+    .card-item:last-child {
+      padding-bottom: 5px;
+    }
+
+    .card-item:after {
+      content: attr(data-year);
+      width: 10px;
+      position: absolute;
+      top: 0;
+      left: 37px;
+      width: 8px;
+      height: 8px;
+      line-height: 0.6;
+      border: 2px solid #fff;
+      font-size: 11px;
+      text-indent: -35px;
+      border-radius: 50%;
+      color: rgba(134, 134, 134, 0.7);
+      background: linear-gradient(to bottom, #a0aee3 0%, #516acc 100%);
+    }
+
+    .card-item-title {
+      font-weight: 500;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .card-item-desc {
+      font-size: 13px;
+      color: #6f6f7b;
+      line-height: 1.5;
+      font-family: "DM Sans", sans-serif;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="card" data-state="#about">
+    <div class="card-header">
+      <div class="card-cover"></div>
+      <img class="card-avatar" src="avatar.jpeg" alt="avatar" />
+      <h1 class="card-fullname">$name$</h1>
+      <h2 class="card-jobtitle">$position$</h2>
+    </div>
+    <div class="card-main">
+      <div class="card-section is-active" id="about">
+        <div class="card-content">
+          <div class="card-subtitle">ABOUT</div>
+          <p class="card-desc">$about$
+          </p>
+        </div>
+        <div class="card-social">
+          $if(facebook)$
+          <a href="$facebook$"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15.997 3.985h2.191V.169C17.81.117 16.51 0 14.996 0c-3.159 0-5.323 1.987-5.323 5.639V9H6.187v4.266h3.486V24h4.274V13.267h3.345l.531-4.266h-3.877V6.062c.001-1.233.333-2.077 2.051-2.077z" />
+            </svg></a>
+          $endif$
+          $if(twitter)$
+          <a href="$twitter$"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path
+                d="M512 97.248c-19.04 8.352-39.328 13.888-60.48 16.576 21.76-12.992 38.368-33.408 46.176-58.016-20.288 12.096-42.688 20.64-66.56 25.408C411.872 60.704 384.416 48 354.464 48c-58.112 0-104.896 47.168-104.896 104.992 0 8.32.704 16.32 2.432 23.936-87.264-4.256-164.48-46.08-216.352-109.792-9.056 15.712-14.368 33.696-14.368 53.056 0 36.352 18.72 68.576 46.624 87.232-16.864-.32-33.408-5.216-47.424-12.928v1.152c0 51.008 36.384 93.376 84.096 103.136-8.544 2.336-17.856 3.456-27.52 3.456-6.72 0-13.504-.384-19.872-1.792 13.6 41.568 52.192 72.128 98.08 73.12-35.712 27.936-81.056 44.768-130.144 44.768-8.608 0-16.864-.384-25.12-1.44C46.496 446.88 101.6 464 161.024 464c193.152 0 298.752-160 298.752-298.688 0-4.64-.16-9.12-.384-13.568 20.832-14.784 38.336-33.248 52.608-54.496z" />
+            </svg></a>
+          $endif$
+          $if(instagram)$
+          <a href="$instagram$"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+              <path d="M301 256c0 24.852-20.148 45-45 45s-45-20.148-45-45 20.148-45 45-45 45 20.148 45 45zm0 0" />
+              <path
+                d="M332 120H180c-33.086 0-60 26.914-60 60v152c0 33.086 26.914 60 60 60h152c33.086 0 60-26.914 60-60V180c0-33.086-26.914-60-60-60zm-76 211c-41.355 0-75-33.645-75-75s33.645-75 75-75 75 33.645 75 75-33.645 75-75 75zm86-146c-8.285 0-15-6.715-15-15s6.715-15 15-15 15 6.715 15 15-6.715 15-15 15zm0 0" />
+              <path
+                d="M377 0H135C60.562 0 0 60.563 0 135v242c0 74.438 60.563 135 135 135h242c74.438 0 135-60.563 135-135V135C512 60.562 451.437 0 377 0zm45 332c0 49.625-40.375 90-90 90H180c-49.625 0-90-40.375-90-90V180c0-49.625 40.375-90 90-90h152c49.625 0 90 40.375 90 90zm0 0" />
+            </svg></a>
+          $endif$
+          $if(linkedin)$
+          <a href="$linkedin$"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+            d="M23.994 24v-.001H24v-8.802c0-4.306-.927-7.623-5.961-7.623-2.42 0-4.044 1.328-4.707 2.587h-.07V7.976H8.489v16.023h4.97v-7.934c0-2.089.396-4.109 2.983-4.109 2.549 0 2.587 2.384 2.587 4.243V24zM.396 7.977h4.976V24H.396zM2.882 0C1.291 0 0 1.291 0 2.882s1.291 2.909 2.882 2.909 2.882-1.318 2.882-2.909A2.884 2.884 0 002.882 0z" />
+          </svg></a>
+          $endif$
+          $if(email)$
+          <a href="mailto:$email$"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path
+            d="M14.608 12.172c0 .84.239 1.175.864 1.175 1.393 0 2.28-1.775 2.28-4.727 0-4.512-3.288-6.672-7.393-6.672-4.223 0-8.064 2.832-8.064 8.184 0 5.112 3.36 7.896 8.52 7.896 1.752 0 2.928-.192 4.727-.792l.386 1.607c-1.776.577-3.674.744-5.137.744-6.768 0-10.393-3.72-10.393-9.456 0-5.784 4.201-9.72 9.985-9.72 6.024 0 9.215 3.6 9.215 8.016 0 3.744-1.175 6.6-4.871 6.6-1.681 0-2.784-.672-2.928-2.161-.432 1.656-1.584 2.161-3.145 2.161-2.088 0-3.84-1.609-3.84-4.848 0-3.264 1.537-5.28 4.297-5.28 1.464 0 2.376.576 2.782 1.488l.697-1.272h2.016v7.057h.002zm-2.951-3.168c0-1.319-.985-1.872-1.801-1.872-.888 0-1.871.719-1.871 2.832 0 1.68.744 2.616 1.871 2.616.792 0 1.801-.504 1.801-1.896v-1.68z" />
+          </svg></a>
+          $endif$
+          $if(github)$
+          <a href="$github$"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <path
+            d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" />
+          </svg></a>
+          $endif$
+          $if(cv_pdf)$
+          <a href="$cv_pdf$"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="none" stroke="#a5b5ce" stroke-width="2"
+            d="M4.99787498,8.99999999 L4.99787498,0.999999992 L19.4999998,0.999999992 L22.9999998,4.50000005 L23,23 L4,23 M18,1 L18,6 L23,6 M3,12 L3.24999995,12 L4.49999995,12 C6.5,12 6.75,13.25 6.75,14 C6.75,14.75 6.5,16 4.49999995,16 L3.24999995,16 L3.24999995,18 L3,17.9999999 L3,12 Z M9.5,18 L9.5,12 C9.5,12 10.4473684,12 11.2052633,12 C12.3421053,12 13.5,12.5 13.5,15 C13.5,17.5 12.3421053,18 11.2052633,18 C10.4473684,18 9.5,18 9.5,18 Z M16.5,19 L16.5,12 L20.5,12 M16.5,15.5 L19.5,15.5" />
+          </svg></a>
+          $endif$
+        </div>
+      </div>
+      <div class="card-section" id="experience">
+        <div class="card-content">
+          <div class="card-subtitle">WORK EXPERIENCE</div>
+          <div class="card-timeline">
+            $for(experience)$
+            <div class="card-item" data-year="$experience.year$">
+              <div class="card-item-title">$experience.position$ at <span>$experience.job$</span></div>
+              <div class="card-item-desc">$experience.summary$</div>
+            </div>
+            $endfor$
+          </div>
+        </div>
+      </div>
+      <div class="card-buttons">
+        <button data-section="#about" class="is-active">ABOUT</button>
+        <button data-section="#experience">EXPERIENCE</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const buttons = document.querySelectorAll(".card-buttons button");
+    const sections = document.querySelectorAll(".card-section");
+    const card = document.querySelector(".card");
+
+    const handleButtonClick = e => {
+      const targetSection = e.target.getAttribute("data-section");
+      const section = document.querySelector(targetSection);
+      targetSection !== "#about" ?
+        card.classList.add("is-active") :
+        card.classList.remove("is-active");
+      card.setAttribute("data-state", targetSection);
+      sections.forEach(s => s.classList.remove("is-active"));
+      buttons.forEach(b => b.classList.remove("is-active"));
+      e.target.classList.add("is-active");
+      section.classList.add("is-active");
+    };
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", handleButtonClick);
+    });
+  </script>
+</body>
+
+</html>

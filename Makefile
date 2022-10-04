@@ -1,21 +1,11 @@
-.DEFAULT_GOAL := help
-POETRY_RUN = poetry run
+.DEFAULT_GOAL := generate
 
-.PHONY: all docs docs-serve help clean
+.PHONY: generate
+generate:
+	mkdir site || true
+	cp src/avatar.jpeg site/avatar.jpeg
+	docker-compose run --rm pandoc pandoc src/profile.yml -o site/index.html --template=template/index.html
 
-all: docs clean
-
-help:
-	@echo 'Usage: make [target] ...'
-	@echo ''
-	@echo '    make docs'
-	@echo ''
-
-docs:
-	$(POETRY_RUN) mkdocs build -s -v
-
-docs-serve:
-	$(POETRY_RUN) mkdocs serve
-
+.PHONY: clean
 clean:
-	rm -rf site || true
+	rm -r site || true
