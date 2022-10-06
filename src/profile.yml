@@ -12,13 +12,11 @@ about: |
   More than 8 years of professional web development.
 
 experience:
-  - year: 2019
-    position: Software Architect
-    job: Tinkoff.ru
+  - year: 2016
+    position: PHP Developer
+    job: Bodysite.ru
     summary: |
-      Languages: Python<br>
-      Protocols: REST, gRPC, Kafka (avro)<br>
-      Packages: FastAPI, Flask, Sqlalchemy, Huey, ...
+      I made E-commerce plugins
   - year: 2017
     position: Python developer
     job: USSC.ru
@@ -26,10 +24,12 @@ experience:
       Languages: Python, Go, Typescript<br>
       Protocols: REST, RabbitMQ (json)<br>
       Packages: aiohttp, sqlalchemy, ...
-  - year: 2016
-    position: PHP Developer
-    job: Bodysite.ru
+  - year: 2019
+    position: Software Architect
+    job: Tinkoff.ru
     summary: |
-      I made E-commerce plugins
+      Languages: Python<br>
+      Protocols: REST, gRPC, Kafka (avro)<br>
+      Packages: FastAPI, Flask, Sqlalchemy, Huey, ...
 
 ---
