@@ -16,7 +16,7 @@
     body {
       color: #2b2c48;
       font-family: "Jost", sans-serif;
-      background-image: linear-gradient(to right bottom, #bd31a7, #8c3c98, #623c81, #413663, #2b2c42);
+      background-color: #a5b5ce;
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
@@ -416,7 +416,7 @@
           <div class="card-timeline">
             $for(experience)$
             <div class="card-item" data-year="$experience.year$">
-              <div class="card-item-title">$experience.position$ at <span>$experience.job$</span></div>
+              <div class="card-item-title">$experience.position$ for <span>$experience.job$</span></div>
               <div class="card-item-desc">$experience.summary$</div>
             </div>
             $endfor$
