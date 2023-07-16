@@ -1,11 +1,22 @@
-.DEFAULT_GOAL := generate
+DEFAULT_GOAL := help
 
-.PHONY: generate
-generate:
-	mkdir site || true
-	cp src/avatar.jpeg site/avatar.jpeg
-	docker-compose run --rm pandoc pandoc src/profile.yml -o site/index.html --template=template/index.html
+.PHONY: help
+help:
+	@echo "Usage: make [target]"
+	@echo ""
+	@echo "Targets:"
+	@echo "  install-poetry  Install poetry"
+	@echo "  install         Install dependencies"
+	@echo "  docs            Build documentation"
 
-.PHONY: clean
-clean:
-	rm -r site || true
+.PHONY: install-poetry
+install-poetry:
+	pip install poetry
+
+.PHONY: install
+install:
+	poetry install
+
+.PHONY: docs
+docs:
+	poetry run mkdocs build

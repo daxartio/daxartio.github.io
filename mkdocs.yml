@@ -1,0 +1,10 @@
+site_name: Profile Card
+docs_dir: content
+site_url: https://daxartio.github.io
+
+theme:
+  name: mkdocs
+  custom_dir: templates
+
+nav:
+  - index.md
