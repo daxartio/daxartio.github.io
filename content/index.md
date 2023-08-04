@@ -7,7 +7,6 @@ profile:
   position: Software Architect
   email: daxartio@gmail.com
   github: https://github.com/daxartio
-  twitter: https://twitter.com/daxartio
   cv_pdf: https://github.com/daxartio/cv/raw/main/en.pdf
 
   about: |
