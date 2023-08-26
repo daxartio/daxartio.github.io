@@ -16,7 +16,7 @@ profile:
   experience:
     - year: now
       position: Software Architect
-      job: Tinkoff.ru
+      job: Yellow Bank
       summary: |
         Languages: Python<br>
         Protocols: REST, gRPC, Kafka (avro)<br>
