@@ -1,5 +1,7 @@
 DEFAULT_GOAL := help
 
+POETRY_RUN := poetry run
+
 .PHONY: help
 help:
 	@echo "Usage: make [target]"
@@ -15,8 +17,8 @@ install-poetry:
 
 .PHONY: install
 install:
-	poetry install
+	poetry install --no-root
 
 .PHONY: docs
 docs:
-	poetry run mkdocs build
+	$(POETRY_RUN) mkdocs build
